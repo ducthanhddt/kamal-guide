@@ -8,7 +8,7 @@ image: thanhdd123/kamal_guide
 servers:
   web:
     hosts:
-      - 178.156.146.40
+      - 5.161.86.141
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -109,21 +109,21 @@ accessories:
         - POSTGRES_PASSWORD
     directories:
       - data:/var/lib/postgresql/data
-  s3_backup:
-    image: eeshugerman/postgres-backup-s3:16
-    host: 178.156.146.40
-    env:
-      clear:
-        SCHEDULE: '@every 20s'
-        BACKUP_KEEP_DAYS: 30
-        S3_REGION: 'ap-southeast-1'
-        S3_BUCKET: kamal-tutorial
-        S3_PREFIX: backups
-        S3_ENDPOINT: https://kamal-tutorial.s3.ap-southeast-1.amazonaws.com
-        POSTGRES_HOST: kamal_guide-db
-        POSTGRES_DATABASE: kamal_guide_production
-        POSTGRES_USER: kamal_guide
-      secret:
-        - POSTGRES_PASSWORD
-        - S3_ACCESS_KEY_ID
-        - S3_SECRET_ACCESS_KEY
+  # s3_backup:
+  #   image: eeshugerman/postgres-backup-s3:16
+  #   host: 178.156.146.40
+  #   env:
+  #     clear:
+  #       SCHEDULE: '@every 20s'
+  #       BACKUP_KEEP_DAYS: 30
+  #       S3_REGION: 'ap-southeast-1'
+  #       S3_BUCKET: kamal-tutorial
+  #       S3_PREFIX: backups
+  #       S3_ENDPOINT: https://kamal-tutorial.s3.ap-southeast-1.amazonaws.com
+  #       POSTGRES_HOST: kamal_guide-db
+  #       POSTGRES_DATABASE: kamal_guide_production
+  #       POSTGRES_USER: kamal_guide
+  #     secret:
+  #       - POSTGRES_PASSWORD
+  #       - S3_ACCESS_KEY_ID
+  #       - S3_SECRET_ACCESS_KEY
