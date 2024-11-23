@@ -9,6 +9,8 @@ servers:
   web:
     hosts:
       - 5.161.86.141
+      - 5.161.240.221
+      - 178.156.149.93
   job:
     hosts:
       - 5.161.241.250
@@ -19,7 +21,7 @@ servers:
 #
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
-  ssl: true
+  ssl: false
   host: kamal-guide.line.pm
   app_port: 3000
 
