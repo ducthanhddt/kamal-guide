@@ -15,14 +15,27 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-
+  username: <%= Rails.application.credentials.dig(:db, :username) %>
+  password: <%= Rails.application.credentials.dig(:db, :password) %>
+  host: <%= Rails.application.credentials.dig(:db, :host) %>
 
 development:
-  <<: *default
-  database: kamal_guide_development
+  primary:
+    <<: *default
+    database: kamal_guide_development
+  cache:
+    <<: *default
+    database: kamal_guide_development_cache
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *default
+    database: kamal_guide_development_queue
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *default
+    database: kamal_guide_development_cable
+    migrations_paths: db/cable_migrate
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -83,7 +96,7 @@ production:
     <<: *default
     database: kamal_guide_production
     username: kamal_guide
-    password: <%= ENV["KAMAL_GUIDE_DATABASE_PASSWORD"] %>
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
   cache:
     <<: *primary_production
     database: kamal_guide_production_cache
