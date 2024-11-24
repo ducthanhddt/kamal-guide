@@ -25,7 +25,8 @@
   <body>
     <%  uri = URI.parse('https://api.ipify.org?format=text') %>
     <% public_ip = Net::HTTP.get(uri) %>
-    <h1>Posts on <%= public_ip %></h1>
+    <h1>Public IP: <%= public_ip %></h1>
+    <h1>Before rollback</h1>
     <%= yield %>
   </body>
 </html>
